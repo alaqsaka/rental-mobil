@@ -1,24 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { Routes, Route } from "react-router-dom";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import Homepage from "./pages/Homepage";
+import Cari from "./pages/Cari";
+import Sewa from "./pages/Sewa";
+import Profile from "./pages/Profile";
+import Transaksi from "./pages/Transaksi";
+import DashboardLayout from "./components/auth/DashboardLayout";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route path="/" element={<Homepage />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<Signup />} />
+
+      <Route path="/dashboard" element={<DashboardLayout />}>
+        <Route path="transaksi">
+          <Route index element={<Transaksi />} />
+        </Route>
+        <Route path="profile">
+          <Route index element={<Profile />} />
+        </Route>
+      </Route>
+
+      <Route path="/cari" element={<Cari />} />
+      <Route path="/sewa" element={<Sewa />} />
+    </Routes>
   );
 }
 
